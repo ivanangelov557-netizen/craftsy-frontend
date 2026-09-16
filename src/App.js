@@ -1,25 +1,39 @@
 import './App.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Header from './components/Header';
 import HeroSearch from './components/HeroSearch';
 import CategoryCards from './components/CategoryCards';
 import ProductGrid from './components/ProductGrid';
 import Footer from './components/Footer';
+import ProductDetail from './components/ProductDetail';
 
 function App() {
   return (
-    <div className="App">
+    <Router>
       <Header />
-      <HeroSearch />
-      <CategoryCards />
-      <ProductGrid />
-      
-      <main className="p-8">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Craftsy!</h1>
-        <p className="text-gray-600">Building the future of artisan marketplace...</p>
-      </main>
-
+      <Routes>
+        {/* Home Page */}
+        <Route
+          path="/"
+          element={
+            <>
+              <HeroSearch />
+              <CategoryCards />
+              <ProductGrid />
+              
+              <main className="p-8">
+                <h1 className="text-4xl font-bold mb-4">Welcome to Craftsy!</h1>
+                <p className="text-gray-600">Building the future of artisan marketplace...</p>
+              </main>
+            </>
+          }
+        />
+        
+        {/* Product Detail Page */}
+        <Route path="/product/:productId" element={<ProductDetail />} />
+      </Routes>
       <Footer />
-    </div>
+    </Router>
   );
 }
 

@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function ProductCard({ product }) {
   const [isSaved, setIsSaved] = useState(false);
+  const navigate = useNavigate();
 
   return (
-    <div className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition">
+    <div 
+      className="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-xl transition cursor-pointer"
+      onClick={() => navigate(`/product/${product.id}`)}
+    >
       
       {/* Product Image */}
       <div className="relative h-48 bg-gray-200 overflow-hidden group">
@@ -60,11 +65,20 @@ export default function ProductCard({ product }) {
 
         {/* Action Buttons */}
         <div className="flex gap-2">
-          <button className="flex-1 bg-green-800 hover:bg-green-700 text-white py-2 rounded-lg font-semibold transition">
+          <button 
+            className="flex-1 bg-green-800 hover:bg-green-700 text-white py-2 rounded-lg font-semibold transition"
+            onClick={(e) => {
+              e.stopPropagation();
+              // Later: Add to cart functionality
+            }}
+          >
             🛒 Add to Cart
           </button>
           <button
-            onClick={() => setIsSaved(!isSaved)}
+            onClick={(e) => {
+              e.stopPropagation();
+              setIsSaved(!isSaved);
+            }}
             className={`px-4 py-2 rounded-lg font-semibold transition ${
               isSaved
                 ? 'bg-red-100 text-red-800'
