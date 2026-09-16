@@ -6,6 +6,7 @@ import CategoryCards from './components/CategoryCards';
 import ProductGrid from './components/ProductGrid';
 import Footer from './components/Footer';
 import ProductDetail from './components/ProductDetail';
+import ShoppingCart from './components/ShoppingCart';
 
 function App() {
   return (
@@ -31,6 +32,9 @@ function App() {
         
         {/* Product Detail Page */}
         <Route path="/product/:productId" element={<ProductDetail />} />
+
+        {/* Shopping Cart Page */}
+        <Route path="/cart" element={<ShoppingCart />} />
       </Routes>
       <Footer />
     </Router>

@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { useCartStore } from '../store/cartStore';
 
 export default function ProductDetail() {
   const { productId } = useParams();
   const [quantity, setQuantity] = useState(1);
+  const addToCart = useCartStore((state) => state.addToCart);
 
   // Sample product - в бъдещност ще идва от API
   const product = {
     id: 1,
     name: 'Handmade Ceramic Vase - Blue Edition',
-    price: '45',
+    price: 45,
     rating: '4.8',
     reviewCount: '234',
     image: 'https://images.unsplash.com/photo-1578500494198-246f612d03b3?w=800&h=800&fit=crop',
@@ -68,6 +70,11 @@ export default function ProductDetail() {
         text: 'Great quality, shipping took a bit longer than expected but worth it.'
       }
     ]
+  };
+
+  const handleAddToCart = () => {
+    addToCart(product, quantity);
+    alert(`✅ Added ${quantity}x ${product.name} to cart!`);
   };
 
   return (
@@ -170,14 +177,17 @@ export default function ProductDetail() {
                   </button>
                 </div>
                 <span className="flex items-center text-gray-600">
-                  Total: €{product.price * quantity}
+                  Total: €{(product.price * quantity).toFixed(2)}
                 </span>
               </div>
             </div>
 
             {/* Buttons */}
             <div className="flex gap-3 mb-6">
-              <button className="flex-1 bg-green-800 hover:bg-green-700 text-white py-3 rounded-lg font-bold text-lg transition">
+              <button 
+                onClick={handleAddToCart}
+                className="flex-1 bg-green-800 hover:bg-green-700 text-white py-3 rounded-lg font-bold text-lg transition"
+              >
                 🛒 Add to Cart
               </button>
               <button className="px-6 py-3 bg-gray-100 hover:bg-gray-200 text-gray-900 rounded-lg font-semibold transition">
