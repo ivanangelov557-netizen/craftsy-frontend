@@ -7,6 +7,9 @@ import ProductGrid from './components/ProductGrid';
 import Footer from './components/Footer';
 import ProductDetail from './components/ProductDetail';
 import ShoppingCart from './components/ShoppingCart';
+import Login from './components/Login';
+import Register from './components/Register';
+import Profile from './components/Profile';
 
 function App() {
   return (
@@ -35,6 +38,15 @@ function App() {
 
         {/* Shopping Cart Page */}
         <Route path="/cart" element={<ShoppingCart />} />
+
+        {/* Login Page */}
+        <Route path="/login" element={<Login />} />
+
+        {/* Register Page */}
+        <Route path="/register" element={<Register />} />
+
+        {/* User Profile Page */}
+        <Route path="/profile" element={<Profile />} />
       </Routes>
       <Footer />
     </Router>
